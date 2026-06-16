@@ -73,6 +73,8 @@
 |------|----------------|------|-----------|
 | 2026-06-16 | Vuole costruire sistemi per migliorare nel tempo | Generale | Prima rilevazione |
 | 2026-06-16 | Tollera (e vuole) la verità scomoda — non si accontenta di risposte rassicuranti | Generale | Prima rilevazione |
+| 2026-06-16 | Progetta l'infrastruttura prima di usarla — pensa in sistemi | Generale | Prima rilevazione |
+| 2026-06-16 | Vuole essere trattato come persona in evoluzione, non come stato statico | Generale | Prima rilevazione |
 
 ---
 

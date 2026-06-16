@@ -10,6 +10,7 @@
 |---|--------|------|---------|------|
 | 1 | Costruire sistemi che migliorano nel tempo, non solo reagire agli eventi | Generale | Dichiarata | 2026-06-16 |
 | 2 | Preferisco la verità scomoda alla rassicurazione falsa | Generale | Dichiarata | 2026-06-16 |
+| 3 | Voglio essere trattato come una persona in evoluzione, non come uno stato statico | Generale | Dichiarata | 2026-06-16 |
 
 ---
 
