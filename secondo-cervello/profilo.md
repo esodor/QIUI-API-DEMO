@@ -27,6 +27,8 @@
 - Vuole essere avvertito dei rischi prima che diventino problemi
 - Apprezza connessioni tra informazioni passate e nuove
 - Non vuole consigli generici, ma specifici per la sua situazione
+- **Preferisce la verità scomoda alla rassicurazione falsa** — dichiarato esplicitamente
+- Ha attivato "Modalità analisi profonda": analisi multi-strato (passato, obiettivi, paure, soldi, lavoro, trading, relazioni, salute, futuro)
 
 ---
 
@@ -70,6 +72,7 @@
 | Data | Schema rilevato | Area | Frequenza |
 |------|----------------|------|-----------|
 | 2026-06-16 | Vuole costruire sistemi per migliorare nel tempo | Generale | Prima rilevazione |
+| 2026-06-16 | Tollera (e vuole) la verità scomoda — non si accontenta di risposte rassicuranti | Generale | Prima rilevazione |
 
 ---
 
