@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secondo Cervello</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="logo">🧠</span>
+      <h1>Secondo Cervello</h1>
+      <button class="sidebar-toggle" onclick="toggleSidebar()" title="Chiudi">✕</button>
+    </div>
+
+    <div class="profile-chip">
+      <span class="profile-icon">👤</span>
+      <span id="profileName">Matteo Bascetta</span>
+    </div>
+
+    <div class="section-label">AREE</div>
+    <nav class="brain-nav" id="brainNav">
+      <!-- populated by JS -->
+    </nav>
+
+    <div class="section-label" id="filesLabel" style="display:none">FILE</div>
+    <div class="file-list" id="fileList">
+      <!-- populated by JS -->
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="new-chat-btn" onclick="newChat()">+ Nuova conversazione</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <span class="topbar-title">Secondo Cervello</span>
+      <div class="status-dot" id="statusDot" title="Controllo API..."></div>
+    </header>
+
+    <!-- CHAT AREA -->
+    <div class="chat-area" id="chatArea">
+      <div class="welcome" id="welcome">
+        <div class="welcome-icon">🧠</div>
+        <h2>Benvenuto nel tuo Secondo Cervello</h2>
+        <p>Scrivimi qualcosa, carica un file, o usa i pulsanti rapidi qui sotto.</p>
+        <div class="welcome-chips">
+          <button class="chip" onclick="quickAction('Modalità analisi profonda: ')">🔍 Analisi Profonda</button>
+          <button class="chip" onclick="quickAction('Aggiorna il mio sistema')">🔄 Aggiorna Sistema</button>
+          <button class="chip" onclick="quickAction('Revisione settimanale')">📊 Revisione</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPLOAD PREVIEW -->
+    <div class="upload-preview" id="uploadPreview"></div>
+
+    <!-- INPUT AREA -->
+    <div class="input-area">
+      <div class="quick-btns">
+        <button class="quick-btn" onclick="quickAction('Modalità analisi profonda: ')">🔍 Analisi Profonda</button>
+        <button class="quick-btn" onclick="quickAction('Aggiorna il mio sistema')">🔄 Aggiorna Sistema</button>
+        <button class="quick-btn" onclick="quickAction('Revisione settimanale')">📊 Revisione</button>
+      </div>
+      <div class="input-row">
+        <label class="attach-btn" for="fileInput" title="Allega file">📎</label>
+        <input type="file" id="fileInput" multiple
+               accept="image/*,.pdf,.txt,.md,.csv,.json,.xml,.yaml,.yml,video/*"
+               onchange="handleFiles(this.files)">
+        <textarea id="msgInput" placeholder="Scrivi qualcosa..." rows="1"
+                  onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <span id="sendIcon">➤</span>
+          <span id="loadingIcon" style="display:none">⏳</span>
+        </button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- SAVE MODAL -->
+<div class="modal-backdrop" id="saveBackdrop" onclick="closeSaveModal()"></div>
+<div class="modal" id="saveModal">
+  <div class="modal-header">
+    <h3>💾 Salva nel Secondo Cervello</h3>
+    <button onclick="closeSaveModal()">✕</button>
+  </div>
+  <div class="modal-body">
+    <label>Percorso file</label>
+    <input type="text" id="savePath" placeholder="secondo-cervello/area/nome.md">
+    <label>Azione</label>
+    <select id="saveAction">
+      <option value="create">Crea nuovo file</option>
+      <option value="append">Aggiungi al file esistente</option>
+    </select>
+    <label>Contenuto</label>
+    <textarea id="saveContent" rows="10" placeholder="Contenuto da salvare..."></textarea>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-secondary" onclick="closeSaveModal()">Annulla</button>
+    <button class="btn-primary" onclick="confirmSave()">Salva</button>
+  </div>
+</div>
+
+<!-- FILE VIEWER MODAL -->
+<div class="modal-backdrop" id="fileBackdrop" onclick="closeFileModal()"></div>
+<div class="modal modal-wide" id="fileModal">
+  <div class="modal-header">
+    <h3 id="fileModalTitle">📄 File</h3>
+    <button onclick="closeFileModal()">✕</button>
+  </div>
+  <div class="modal-body">
+    <div class="file-content" id="fileModalContent"></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-secondary" onclick="closeFileModal()">Chiudi</button>
+    <button class="btn-primary" onclick="editFileInModal()">✏️ Modifica</button>
+  </div>
+</div>
+
+<!-- API KEY BANNER -->
+<div class="api-banner" id="apiBanner" style="display:none">
+  ⚠️ API key non configurata.
+  <a href="https://console.anthropic.com" target="_blank">Ottienila qui</a>,
+  poi aggiungila in <code>app/.env</code> come <code>ANTHROPIC_API_KEY=sk-ant-...</code>
+  e riavvia il server.
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
