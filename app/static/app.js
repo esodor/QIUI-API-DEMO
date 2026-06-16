@@ -20,19 +20,37 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ─── STATUS CHECK ──────────────────────────────────────────── */
+const KEY_URLS = {
+  gemini: 'https://aistudio.google.com',
+  groq: 'https://console.groq.com',
+  anthropic: 'https://console.anthropic.com',
+};
+const KEY_NAMES = {
+  gemini: 'GOOGLE_API_KEY',
+  groq: 'GROQ_API_KEY',
+  anthropic: 'ANTHROPIC_API_KEY',
+};
+
 async function checkStatus() {
   try {
     const r = await fetch('/api/status');
     const data = await r.json();
     const dot = document.getElementById('statusDot');
+    const banner = document.getElementById('apiBanner');
     if (data.has_key) {
       dot.className = 'status-dot ok';
-      dot.title = `Connesso — ${data.model}`;
-      document.getElementById('apiBanner').style.display = 'none';
+      dot.title = `${data.provider} — ${data.model}`;
+      banner.style.display = 'none';
     } else {
       dot.className = 'status-dot error';
       dot.title = 'API key mancante';
-      document.getElementById('apiBanner').style.display = 'block';
+      const url = KEY_URLS[data.provider] || 'https://console.anthropic.com';
+      const varName = KEY_NAMES[data.provider] || 'API_KEY';
+      banner.innerHTML = `⚠️ API key mancante per <strong>${data.provider}</strong>.
+        <a href="${url}" target="_blank">Ottienila qui (gratis)</a>,
+        poi aggiungila in <code>app/.env</code> come <code>${varName}=...</code>
+        e riavvia il server.`;
+      banner.style.display = 'block';
     }
   } catch {
     document.getElementById('statusDot').className = 'status-dot error';
