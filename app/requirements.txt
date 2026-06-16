@@ -1,0 +1,11 @@
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+python-dotenv>=1.0.0
+
+# Provider GRATIS (scegli uno o entrambi)
+google-generativeai>=0.8.0   # Gemini — CONSIGLIATO, supporta immagini e PDF
+groq>=0.9.0                  # Groq  — solo testo, ma molto veloce
+
+# Provider A PAGAMENTO (opzionale)
+anthropic>=0.28.0
